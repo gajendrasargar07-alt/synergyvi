@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual env
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model artifacts (large binary files)
+classical/models/*.joblib
+data/processed/*.joblib
+results/*.npy
+
+# Secrets
+.env
+*.pem
+
+# Jupyter
+.ipynb_checkpoints/
