@@ -6,36 +6,36 @@ Inspired by modern dark AI/SaaS product aesthetics.
 """
 
 # ── Color Palette ──────────────────────────────────────────────────────────────
-BG_PRIMARY = "#0a0a0f"       # Almost-black background
-BG_SECONDARY = "#12121a"     # Dark charcoal surfaces
-BG_CARD = "#1a1a28"          # Card background
-BG_CARD_HOVER = "#22223a"    # Card hover state
-BORDER = "#2a2a3e"           # Subtle borders
-BORDER_ACCENT = "#3a3a5e"    # Active borders
+BG_PRIMARY = "#050505"       # Cinematic near-black background
+BG_SECONDARY = "#0b0b0b"     # Dark charcoal surfaces
+BG_CARD = "#111111"          # Card background
+BG_CARD_HOVER = "#191919"    # Card hover state
+BORDER = "#2a2a2a"           # Subtle borders
+BORDER_ACCENT = "#5b171a"    # Active borders
 
-TEXT_PRIMARY = "#e8e8f0"     # Off-white primary text
-TEXT_SECONDARY = "#9898b0"   # Muted gray secondary text
-TEXT_MUTED = "#6868880"      # Very muted text
+TEXT_PRIMARY = "#f5f5f1"     # Warm white primary text
+TEXT_SECONDARY = "#a4a4a0"   # Muted gray secondary text
+TEXT_MUTED = "#676764"       # Very muted text
 
-ACCENT = "#6366f1"           # Primary indigo/violet accent
-ACCENT_LIGHT = "#818cf8"     # Lighter accent
-ACCENT_GLOW = "rgba(99, 102, 241, 0.15)"  # Subtle glow
+ACCENT = "#e50914"           # Cinematic red accent
+ACCENT_LIGHT = "#ff4d56"     # Lighter red accent
+ACCENT_GLOW = "rgba(229, 9, 20, 0.18)"  # Subtle glow
 
 SUCCESS = "#22c55e"          # Green - benign/good
 DANGER = "#ef4444"           # Red - malignant/bad
 WARNING = "#f59e0b"          # Amber - caution
-INFO = "#3b82f6"             # Blue - informational
+INFO = "#e9e9e4"             # Neutral - informational
 
 QUANTUM_PURPLE = "#8b5cf6"   # Quantum-specific accent
 QUANTUM_GLOW = "rgba(139, 92, 246, 0.15)"
 
 # ── Typography ─────────────────────────────────────────────────────────────────
-FONT_FAMILY = "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+FONT_FAMILY = "'DM Sans', 'Segoe UI', sans-serif"
 
 # ── Main CSS ───────────────────────────────────────────────────────────────────
 CUSTOM_CSS = f"""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
     /* ── Global ─────────────────────────────────────────────────── */
     .stApp {{
@@ -318,6 +318,69 @@ CUSTOM_CSS = f"""
     }}
     ::-webkit-scrollbar-thumb:hover {{
         background: {BORDER_ACCENT};
+    }}
+
+    /* ── Cinematic editorial overrides ─────────────────────────── */
+    .stApp {{
+        background:
+            radial-gradient(ellipse 70% 42% at 78% -10%, rgba(229, 9, 20, .16), transparent 68%),
+            linear-gradient(180deg, #090909 0%, {BG_PRIMARY} 42rem);
+    }}
+    .block-container {{ max-width: 1440px; padding: 2.2rem 3.4rem 4rem; }}
+    section[data-testid="stSidebar"] {{ background: #080808; border-right-color: #252525; }}
+    section[data-testid="stSidebar"] .stRadio label {{
+        border-radius: 3px; font-size: .78rem; font-weight: 600; letter-spacing: .055em;
+        padding: .35rem .45rem; text-transform: uppercase;
+    }}
+    section[data-testid="stSidebar"] .stRadio label:hover {{ background: #181818; color: {TEXT_PRIMARY}; }}
+    .qdx-eyebrow {{
+        color: {ACCENT_LIGHT}; font-family: 'DM Mono', monospace; font-size: .68rem;
+        font-weight: 500; letter-spacing: .13em; text-transform: uppercase;
+    }}
+    .qdx-hero {{
+        background: linear-gradient(115deg, rgba(20,20,20,.96), rgba(10,10,10,.72));
+        border-color: #292929; border-radius: 4px; min-height: 330px; padding: 3.8rem 3.5rem;
+    }}
+    .qdx-hero::after {{
+        content: ''; position: absolute; width: 44rem; height: 44rem; right: -21rem; top: -22rem;
+        background: radial-gradient(circle, rgba(229,9,20,.28), rgba(229,9,20,.04) 34%, transparent 70%);
+        pointer-events: none;
+    }}
+    .qdx-hero h1 {{
+        font-size: clamp(2.5rem, 5vw, 4.75rem) !important; line-height: .98;
+        max-width: 780px; margin: .7rem 0 1rem !important;
+    }}
+    .qdx-hero h1 span {{ color: {ACCENT}; }}
+    .qdx-hero p {{ color: #c7c7c2; font-size: 1.04rem; line-height: 1.65; max-width: 580px; }}
+    .qdx-hero-rule {{ background: {ACCENT}; height: 2px; margin: 1.5rem 0; width: 46px; }}
+    .qdx-section-header {{ border-bottom-color: #303030; margin: .6rem 0 1.4rem; padding-bottom: .9rem; }}
+    .qdx-section-header h2 {{ font-size: 1.85rem !important; }}
+    .qdx-card {{
+        background: linear-gradient(145deg, rgba(23,23,23,.96), rgba(14,14,14,.96));
+        border-radius: 3px; transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }}
+    .qdx-card:hover {{ background: {BG_CARD_HOVER}; border-color: #5a282b; transform: translateY(-2px); }}
+    .qdx-metric {{ border-radius: 0; border-top: 2px solid #353535; padding: 1.1rem .8rem; text-align: left; }}
+    .qdx-metric:hover {{ border-top-color: {ACCENT}; }}
+    .qdx-metric-label {{ font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .1em; }}
+    .qdx-badge {{ border-radius: 1px; font-family: 'DM Mono', monospace; font-size: .64rem; letter-spacing: .07em; text-transform: uppercase; }}
+    .qdx-badge-info {{ background: rgba(245,245,241,.08); border-color: #4a4a48; color: {INFO}; }}
+    .qdx-prediction-benign, .qdx-prediction-malignant {{ border-radius: 3px; }}
+    .qdx-prediction-benign {{ border-left: 3px solid {SUCCESS}; }}
+    .qdx-prediction-malignant {{ border-left: 3px solid {DANGER}; }}
+    .qdx-circuit {{ background: #090909; border-color: #303030; border-left: 3px solid {ACCENT}; border-radius: 2px; color: #f1f1ed; }}
+    .qdx-disclaimer {{ background: rgba(229,9,20,.08); border-color: rgba(229,9,20,.3); border-radius: 2px; color: #ffb4b8; }}
+    .stButton > button {{
+        background: {ACCENT}; border-color: {ACCENT}; border-radius: 2px; font-size: .78rem;
+        font-weight: 700; letter-spacing: .055em; text-transform: uppercase;
+    }}
+    .stButton > button:hover {{ background: #ff1722; border-color: #ff1722; box-shadow: none; }}
+    .stTabs [data-baseweb="tab-list"] {{ gap: 1.2rem; border-bottom: 1px solid #303030; }}
+    .stTabs [data-baseweb="tab"] {{ font-size: .78rem; font-weight: 600; letter-spacing: .05em; padding: .55rem 0; text-transform: uppercase; }}
+    .stTabs [data-baseweb="tab-highlight"] {{ background-color: {ACCENT}; }}
+    @media (max-width: 760px) {{
+        .block-container {{ padding: 1.2rem 1rem 3rem; }}
+        .qdx-hero {{ min-height: auto; padding: 2.3rem 1.5rem; }}
     }}
 
     /* ── Hide Streamlit defaults ────────────────────────────────── */

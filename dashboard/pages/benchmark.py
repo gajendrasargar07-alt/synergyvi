@@ -16,11 +16,17 @@ def render_benchmark() -> None:
     
     try:
         from integration.pipeline import load_benchmark_results
-        results = load_benchmark_results()
+        benchmark = load_benchmark_results()
+        # Benchmark files contain metadata plus the actual model dictionary.
+        # Accept the legacy flat format too, so older artifacts remain usable.
+        results = benchmark.get("models", benchmark) if benchmark else {}
         
         if not results:
             empty_state('Run the training pipeline to populate benchmark results.')
             return
+
+        if benchmark.get("generated_at"):
+            st.caption(f"Last generated: {benchmark['generated_at']}")
             
         # Extract data for dataframe
         df_data = []

@@ -39,7 +39,7 @@ def render_quantum_lab():
         circuit_text = quantum.circuit.draw_circuit()
         quantum_circuit_panel(circuit_text)
     except Exception:
-        explanation_panel("Circuit Description", "The circuit uses RX gates for angle encoding followed by StronglyEntanglingLayers as the variational ansatz, measured in the Pauli-Z basis.")
+        explanation_panel("Circuit Description", "The circuit uses RX gates for angle encoding, trainable RY/RZ rotations with a CNOT entanglement chain, and a Pauli-Z measurement.")
         
     st.markdown('<h3>Circuit Properties</h3>', unsafe_allow_html=True)
     try:

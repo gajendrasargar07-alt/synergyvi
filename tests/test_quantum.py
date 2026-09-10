@@ -42,6 +42,8 @@ class TestQuantumModel:
             n_qubits=config.N_QUBITS,
             n_layers=config.N_QUANTUM_LAYERS,
         )
+        # Prediction requires fitted or restored variational parameters.
+        model.params = model._initialize_params()
         assert model is not None
 
     def test_prediction_format(self):
@@ -59,8 +61,9 @@ class TestQuantumModel:
         assert set(np.unique(preds)).issubset({0, 1})
 
         probas = model.predict_proba(X)
-        assert probas.shape == (5,)
+        assert probas.shape == (5, 2)
         assert np.all(probas >= 0) and np.all(probas <= 1)
+        assert np.allclose(probas.sum(axis=1), 1.0)
 
 
 class TestQuantumEvaluation:

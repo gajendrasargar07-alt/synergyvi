@@ -180,7 +180,9 @@ def run_inference(features, use_quantum: bool = True) -> dict:
                 results["quantum"] = {
                     "prediction": int(q_pred[0]),
                     "label": "Malignant" if q_pred[0] == 0 else "Benign",
-                    "probability": float(q_proba[0]),
+                    # QuantumClassifier follows the scikit-learn convention:
+                    # columns are class 0 then class 1 probabilities.
+                    "probability": float(q_proba[0, 1]),
                     "backend": "Local Simulator",
                 }
             else:

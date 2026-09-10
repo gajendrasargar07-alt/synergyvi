@@ -15,8 +15,10 @@ def render_overview() -> None:
     st.markdown(
         '''
         <div class="qdx-hero">
-            <h1>Early detection, reimagined through hybrid intelligence.</h1>
-            <p>Q-Dx combines classical machine learning and quantum machine learning to provide accurate, benchmarkable biomedical predictions.</p>
+            <div class="qdx-eyebrow">Hybrid intelligence / disease research</div>
+            <h1>Find signals.<br><span>Earlier.</span></h1>
+            <div class="qdx-hero-rule"></div>
+            <p>Q-Dx places classical machine learning and quantum experimentation in one focused research workspace for benchmarkable biomedical analysis.</p>
         </div>
         ''',
         unsafe_allow_html=True
@@ -24,9 +26,17 @@ def render_overview() -> None:
     
     col1, col2 = st.columns([1, 1])
     with col1:
-        st.button("Run Prediction", use_container_width=True)
+        st.button(
+            "Run Prediction",
+            use_container_width=True,
+            on_click=lambda: st.session_state.update({"navigation": "Disease Prediction"}),
+        )
     with col2:
-        st.button("Explore Models", use_container_width=True)
+        st.button(
+            "Explore Models",
+            use_container_width=True,
+            on_click=lambda: st.session_state.update({"navigation": "Model Benchmark"}),
+        )
         
     st.markdown("<br>", unsafe_allow_html=True)
     

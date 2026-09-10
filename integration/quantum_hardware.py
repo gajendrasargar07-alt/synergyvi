@@ -170,8 +170,9 @@ def run_on_hardware(quantum_model, X, shots: int = 1024):
                 shots=shots,
                 ibmqx_token=os.environ[config.IBM_QUANTUM_TOKEN_ENV],
             )
-            # This would require reconstructing the QNode with the IBM device
-            # which is complex for a prototype. Return simulator results with note.
+            # This would require reconstructing the QNode with the IBM device.
+            # Until that adapter is implemented, any returned model output must
+            # be identified as local simulation rather than hardware execution.
             raise NotImplementedError("Full hardware circuit execution pending.")
         except (ImportError, NotImplementedError):
             # Fallback: run on simulator but mark clearly
@@ -183,12 +184,13 @@ def run_on_hardware(quantum_model, X, shots: int = 1024):
                 "predictions": predictions.tolist(),
                 "probabilities": probabilities.tolist(),
                 "backend": backend.name,
-                "backend_type": "IBM Quantum Hardware (Simulated Fallback)",
+                "backend_type": "Local Simulator (IBM backend discovered)",
                 "execution_time": elapsed,
                 "shots": shots,
                 "note": (
-                    "Connection to IBM Quantum verified. Circuit executed on local "
-                    "simulator. Full hardware transpilation is available in production."
+                    "An IBM backend was discovered, but this VQC was executed on the "
+                    "local simulator. Hardware circuit transpilation is not implemented "
+                    "in this research prototype."
                 ),
             }
     except Exception as e:

@@ -23,17 +23,18 @@ def render_quantum_hardware():
     st.markdown('<h3>IBM Quantum</h3>', unsafe_allow_html=True)
     try:
         import integration.quantum_hardware
-        has_creds = integration.quantum_hardware.check_ibm_credentials()
+        credentials = integration.quantum_hardware.check_ibm_credentials()
         
-        if has_creds:
+        if credentials["available"]:
             info = integration.quantum_hardware.get_backend_info()
+            ibm_info = info["ibm_quantum"]
             st.markdown(f"""
             <div class="qdx-card">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <strong style="font-size: 1.1rem;">{info.get('name', 'IBM Quantum Backend')}</strong>
-                    {status_badge(info.get('status', 'Available'), 'success')}
+                    <strong style="font-size: 1.1rem;">{ibm_info.get('name', 'IBM Quantum Backend')}</strong>
+                    {status_badge(ibm_info.get('status', 'Unavailable'), 'success' if ibm_info.get('status') == 'Available' else 'warning')}
                 </div>
-                <div style="color:{TEXT_SECONDARY}; font-size: 0.9rem; margin-top: 10px;">Qubits: {info.get('qubits', 'Unknown')}</div>
+                <div style="color:{TEXT_SECONDARY}; font-size: 0.9rem; margin-top: 10px;">Qubits: {ibm_info.get('n_qubits', 'Unknown')}</div>
             </div>
             """, unsafe_allow_html=True)
         else:

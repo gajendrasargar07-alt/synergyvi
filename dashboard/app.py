@@ -47,12 +47,13 @@ PAGES = {
 with st.sidebar:
     st.markdown(
         f"""
-        <div style="padding: 1rem 0 1.5rem 0;">
-            <h1 style="margin:0;font-size:1.6rem;font-weight:800;letter-spacing:-0.03em;">
-                ◇ {config.APP_NAME}
+        <div style="padding: .8rem .35rem 1.7rem;">
+            <div class="qdx-eyebrow">SIH26139 / RESEARCH SYSTEM</div>
+            <h1 style="margin:.35rem 0 0;font-size:2rem;font-weight:700;letter-spacing:-.07em;">
+                Q<span style="color:#e50914;">-</span>Dx
             </h1>
-            <div style="color:#9898b0;font-size:0.78rem;margin-top:0.25rem;line-height:1.4;">
-                {config.APP_SUBTITLE}
+            <div style="color:#9c9c98;font-size:.75rem;margin-top:.42rem;line-height:1.45;">
+                {config.APP_SUBTITLE.upper()}
             </div>
         </div>
         """,
@@ -63,13 +64,14 @@ with st.sidebar:
         "Navigation",
         list(PAGES.keys()),
         label_visibility="collapsed",
+        key="navigation",
     )
 
     st.markdown("---")
     st.markdown(
-        '<div style="color:#68688f;font-size:0.7rem;padding:0.5rem 0;">'
-        "SIH26139 · Research Prototype<br>"
-        "Not for clinical use"
+        '<div style="color:#777773;font-family:monospace;font-size:.64rem;letter-spacing:.04em;padding:.5rem .35rem;">'
+        "BUILD / RESEARCH PROTOTYPE<br>"
+        "NOT FOR CLINICAL USE"
         "</div>",
         unsafe_allow_html=True,
     )

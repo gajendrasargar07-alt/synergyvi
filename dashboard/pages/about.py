@@ -18,7 +18,7 @@ def render_about() -> None:
         ("3. Proposed Solution", "Hybrid quantum-classical approach. Leveraging the robustness of classical preprocessing and the high-dimensional feature space representation of quantum computing to improve prediction performance."),
         ("4. Dataset", "Wisconsin Breast Cancer dataset. Includes 569 samples, 30 features, and 2 classes (Benign, Malignant), serving as the foundational benchmark for the platform."),
         ("5. Classical Methodology", "Implementation of established machine learning models including Logistic Regression, SVM, Random Forest, and XGBoost to establish baseline performance metrics."),
-        ("6. Quantum Methodology", "Variational Quantum Classifier (VQC) using 4 qubits, angle encoding for features, and strongly entangling variational layers to find optimal decision boundaries."),
+        ("6. Quantum Methodology", "Variational Quantum Classifier (VQC) using 4 qubits, RX angle encoding, trainable RY/RZ rotations, and a CNOT entanglement chain to learn a decision boundary on the reduced feature space."),
         ("7. Explainability", "Providing interpretability via SHAP values for classical models and perturbation sensitivity analysis for quantum models to ensure clinical trust."),
         ("8. Benchmarking", "Unified evaluation framework ensuring both classical and quantum models are tested on the same data split using rigorous metrics."),
         ("9. Limitations", "Currently operating on simulated quantum backends, restricted to a single dataset, and not yet validated for clinical-grade diagnostic use."),

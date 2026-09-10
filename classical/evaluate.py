@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 import config
-from predict import predict, predict_proba
+from classical.predict import predict, predict_proba
 
 def evaluate_model(y_true: np.ndarray, y_pred: np.ndarray, y_proba: Optional[np.ndarray] = None) -> Dict[str, Optional[float]]:
     """Evaluate model predictions returning common metrics."""
